@@ -298,22 +298,9 @@ The information presented in this report represents observations obtained during
 
 ---
 
-# 📌 Project Information
 
-**Program:** Networkwalks Cybersecurity Internship  
-**Batch:** B083  
-**Week:** 2  
-**Module:** PM5  
-**Phase:** Phase 2 — Scanning & Network Discovery  
-**Activity:** Zenmap Local Network Scanning
 
----
 
-# 👨‍💻 Author
-
-**Gopal Mahajan**
-
-Cybersecurity Student | VAPT & SOC Enthusiast
 
 ---
 
@@ -323,6 +310,3 @@ I would like to thank **Networkwalks** for providing this practical cybersecurit
 
 ---
 
-# ✅ Module Completion
-
-**PM5 — Zenmap Local Network Scanning: Completed ✅**
