@@ -412,43 +412,7 @@ After completing this module, I learned:
 
 ---
 
-# 📸 Evidence & Screenshots
 
-## Evidence 1 — theHarvester Help Menu
-
-The screenshot demonstrates the available theHarvester options and supported reconnaissance sources.
-
-![Evidence 1 - theHarvester Help](01-theharvester-help.png)
-
----
-
-## Evidence 2 — Baidu OSINT Enumeration
-
-The screenshot demonstrates the successful enumeration of `microsoft.com` using Baidu and shows the discovered email address and hosts.
-
-![Evidence 2 - Baidu Results](02-theharvester-baidu-results.png)
-
----
-
-## Evidence 3 — Multiple OSINT Sources
-
-The screenshot demonstrates theHarvester attempting to use multiple sources and displaying API-key requirements for several sources.
-
-![Evidence 3 - API Sources](03-theharvester-api-sources.png)
-
----
-
-# 📁 Repository Structure
-
-```text
-W2 PM4 - theHarvester OSINT/
-│
-├── README.md
-│
-├── 01-theharvester-help.png
-├── 02-theharvester-baidu-results.png
-└── 03-theharvester-api-sources.png
-```
 
 ---
 
@@ -463,7 +427,7 @@ W2 PM4 - theHarvester OSINT/
 | Tool | theHarvester |
 | Search Source | Baidu |
 | Emails Found | 1 |
-| Hosts Found | 4 |
+| Hosts Found | 11 |
 | API Sources | Multiple |
 | API Limitation | API keys required for several sources |
 | Primary Focus | Public OSINT Collection |
@@ -485,7 +449,7 @@ The information presented in this report represents observations obtained during
 # 📌 Project Information
 
 **Program:** Networkwalks Cybersecurity Internship  
-**Batch:** B083  
+**Batch:** B084  
 **Week:** 2  
 **Module:** PM4  
 **Phase:** Phase 1 — Reconnaissance & Footprinting  
@@ -493,11 +457,7 @@ The information presented in this report represents observations obtained during
 
 ---
 
-# 👨‍💻 Author
 
-**Gopal Mahajan**
-
-Cybersecurity Student | VAPT & SOC Enthusiast
 
 ---
 
