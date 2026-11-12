@@ -389,77 +389,35 @@ After completing the six reconnaissance activities, I identified the following o
 | 2 | WAF technology identifiable | 🟢 Low |
 | 3 | DNS infrastructure information exposed | 🟠 Medium |
 
-> ⚠️ These are reconnaissance observations and potential security considerations. They are not being treated as confirmed vulnerabilities without further authorized validation.
+> ⚠️ These are reconnaissance observations, not confirmed vulnerabilities. Further authorized testing would be required to validate them.
 
 ---
 
 # ⚠️ Risk & Security Impact
 
-## 🟠 Finding 01 — Web Technology Information Exposure
+### 1. Web Technology Information Exposure — Medium
 
-### Observation
+**Observation:** The target uses WordPress 7.0.4, WP Download Manager 3.3.58, and Apache.
 
-The target's web technology stack was identified as:
+**Potential Impact:** Exposed technology information could help attackers identify software versions requiring further security investigation.
 
-- WordPress 7.0.4
-- WP Download Manager 3.3.58
-- Apache
+**Recommendation:** Keep WordPress, plugins, and server software updated.
 
-### Potential Impact
+### 2. WAF Technology Disclosure — Low
 
-An attacker could use publicly available technology and version information to identify software that may need further security investigation.
+**Observation:** Wafw00f identified ModSecurity (SpiderLabs).
 
-### Risk Level
+**Potential Impact:** This reveals information about the security technology protecting the web application.
 
-**Medium**
+**Recommendation:** Keep the WAF enabled, updated, properly configured, and monitored.
 
-### Recommendation
+### 3. DNS Infrastructure Exposure — Medium
 
-Regularly review publicly exposed technologies and keep CMS components, plugins, and server software updated.
+**Observation:** DNSRecon identified MX, TXT, and cPanel-related SRV records.
 
----
+**Potential Impact:** These records provide information about the organization's external infrastructure.
 
-## 🟢 Finding 02 — WAF Technology Disclosure
-
-### Observation
-
-Wafw00f identified:
-
-```text
-ModSecurity (SpiderLabs)
-```
-
-### Potential Impact
-
-This provides information about the security technology being used to protect the web application.
-
-### Risk Level
-
-**Low**
-
-### Recommendation
-
-Keep the WAF properly configured, updated, monitored, and tuned.
-
----
-
-## 🟠 Finding 03 — DNS Infrastructure Exposure
-
-### Observation
-
-DNSRecon identified information including MX, TXT, and cPanel-related SRV records.
-
-### Potential Impact
-
-This information can help someone build a better understanding of the organization's external infrastructure.
-
-### Risk Level
-
-**Medium**
-
-### Recommendation
-
-Regularly review DNS records and remove unnecessary or outdated records and services.
+**Recommendation:** Regularly review DNS records and remove unnecessary or outdated entries.
 
 ---
 
@@ -472,264 +430,51 @@ Regularly review DNS records and remove unnecessary or outdated records and serv
 | DNS Infrastructure Exposure | 🟠 Medium |
 | **Overall Reconnaissance Risk** | **🟠 Medium** |
 
-The findings from this module mainly relate to **information exposure during reconnaissance**.
-
-No confirmed exploitation is claimed in this module.
+The findings mainly relate to information exposure during reconnaissance. No confirmed exploitation is claimed.
 
 ---
 
 # 🛡️ Recommendations
 
-## 🌐 Web Application
-
-- Keep WordPress updated.
-- Keep installed plugins updated.
-- Review publicly exposed technology and version information.
-- Review HTTP response headers.
-- Avoid unnecessary technical information disclosure.
-
-## 🛡️ WAF
-
-- Keep ModSecurity enabled.
-- Keep WAF rules updated.
-- Monitor WAF logs and alerts.
-- Regularly review and tune WAF configuration.
-
-## 🗂️ DNS
-
-- Review DNS records regularly.
-- Remove outdated records.
-- Remove unnecessary publicly exposed services.
-- Review MX, TXT, and SRV records.
-- Monitor changes to external DNS infrastructure.
-
-## 🔎 External Attack Surface
-
-- Perform regular authorized reconnaissance.
-- Maintain an inventory of externally exposed assets.
-- Monitor domains, subdomains, technologies, and services.
-- Review the public attack surface from an attacker's perspective.
+- **Web Application:** Update WordPress and plugins, and review HTTP security headers.
+- **WAF:** Keep ModSecurity enabled, updated, and monitored.
+- **DNS:** Review DNS records and remove unnecessary or outdated entries.
+- **External Attack Surface:** Perform regular authorized reconnaissance and monitor publicly exposed assets.
 
 ---
 
 # 🧠 Key Learning Outcomes
 
-During this module, I learned how different reconnaissance tools can be combined to build an initial picture of a target.
+During this module, I gained practical experience with:
 
-I gained practical experience with:
+- WHOIS enumeration
+- Web technology fingerprinting
+- DNS resolution
+- HTTP header analysis
+- WAF detection
+- DNS enumeration
+- Basic risk assessment
+- Technical documentation
 
-- 🔎 WHOIS enumeration
-- 🌐 Web technology fingerprinting
-- 📡 DNS resolution
-- 📋 HTTP header analysis
-- 🛡️ WAF detection
-- 🗂️ DNS enumeration
-- 📊 Reconnaissance documentation
-- ⚠️ Basic risk analysis
-
-One of the main things I learned from this exercise is that a lot of useful information can be collected **before attempting any vulnerability exploitation**.
+I learned that reconnaissance helps build an initial understanding of a target before vulnerability assessment or exploitation.
 
 ---
 
-# 🔄 Reconnaissance Workflow
-
-```text
-WHOIS
-  │
-  ▼
-Domain Registration Information
-  │
-  ▼
-WhatWeb
-  │
-  ▼
-Web Technology Fingerprinting
-  │
-  ▼
-nslookup
-  │
-  ▼
-DNS / IP Resolution
-  │
-  ▼
-curl -I
-  │
-  ▼
-HTTP Header Analysis
-  │
-  ▼
-Wafw00f
-  │
-  ▼
-WAF Identification
-  │
-  ▼
-DNSRecon
-  │
-  ▼
-DNS Enumeration
-  │
-  ▼
-Findings & Risk Analysis
-```
-
----
-
-# 📸 Evidence & Screenshots
-
-All screenshots for this module are stored inside the `screenshots/` directory.
-
-## Evidence 1 — WHOIS Domain Information
-
-![Evidence 1 - WHOIS](01-whois.png)
-
----
-
-## Evidence 2 — WhatWeb Web Technology Fingerprinting
-
-![Evidence 2 - WhatWeb](02-whatweb.png)
-)
-
----
-
-## Evidence 3 — nslookup DNS Resolution
-
-![Evidence 3 - nslookup](03-nslookup.png)
-)
-
----
-
-## Evidence 4 — curl HTTP Header Analysis
-
-![Evidence 4 - cURL](04-curl.png)
-)
-
----
-
-## Evidence 5 — Wafw00f WAF Detection
-
-![Evidence 5 - Wafw00f](05-wafw00f.png)
-)
-
----
-
-## Evidence 6 — DNSRecon DNS Enumeration
-
-![Evidence 6 - DNSRecon](06-dnsrecon.png)
----
-
-# 📁 Repository Structure
-
-```text
-W2 PM1 - Kali Linux Footprinting/
-│
-├── README.md
-│
-└── screenshots/
-    │
-    ├── 01-whois.png
-    ├── 02-whatweb.png
-    ├── 03-nslookup.png
-    ├── 04-curl.png
-    ├── 05-wafw00f.png
-    └── 06-dnsrecon.png
-```
-
----
-
-# 📋 Module Summary
-
-| Category | Details |
-|---|---|
-| Module | W2-PM1 |
-| Phase | Reconnaissance & Footprinting |
-| Target | `networkwalks.com` |
-| Platform | Kali Linux |
-| Tools | WHOIS, WhatWeb, nslookup, curl, Wafw00f, DNSRecon |
-| Web Technology | WordPress 7.0.4 |
-| Plugin | WP Download Manager 3.3.58 |
-| Web Server | Apache |
-| Target IP | `192.232.216.135` |
-| WAF | ModSecurity (SpiderLabs) |
-| DNS Information | MX, TXT, SRV and related records |
-
----
 
 # ⚖️ Legal & Ethical Disclaimer
 
-All activities documented in this module were performed within an **authorized educational scope**.
+All activities were performed within an authorized educational scope as part of cybersecurity training.
 
-The techniques and tools demonstrated in this project are intended for:
+The tools and techniques demonstrated are intended for cybersecurity education, research, and authorized penetration testing.
 
-- 🎓 Cybersecurity education
-- 🔬 Security research
-- 🧪 Authorized penetration testing
-- 🛡️ Defensive security learning
-- 🧑‍💻 Controlled laboratory environments
-
-> ⚠️ **Never use these tools, commands, or techniques against systems or networks without explicit authorization.**
-
-Unauthorized reconnaissance, scanning, exploitation, or access may violate applicable laws, organizational policies, and terms of service.
-
-I am responsible for ensuring that all security activities remain within the approved scope.
+> ⚠️ Never perform reconnaissance, scanning, or exploitation against systems without explicit authorization.
 
 ---
 
-# 📚 Project Information
-
-| Field | Details |
-|---|---|
-| 🎓 Program | Networkwalks Cybersecurity Internship |
-| 👨‍💻 Batch | B082 |
-| 📅 Week | 02 |
-| 🔍 Module | W2-PM1 |
-| 🛡️ Phase | Reconnaissance & Footprinting |
-| 🐉 Platform | Kali Linux |
-| 🎯 Target | `networkwalks.com` |
-| 📌 Assessment Type | Footprinting & Reconnaissance |
-
----
-
-# 👤 Author
-
-**Gopal Mahajan**
-
-### 🔐 Cybersecurity Journey
-
-> **Reconnaissance → Footprinting → Enumeration → Risk Analysis → Professional Reporting**
-
-**🔐 Learn responsibly. Test ethically. Document professionally.**
-
----
-
-# ⭐ Acknowledgement
+# 📚 Acknowledgement
 
 This module was completed as part of the **Networkwalks Cybersecurity Internship Program — Batch B082**.
 
-This exercise helped me gain practical experience with reconnaissance tools and understand how information gathering forms the foundation of a penetration-testing workflow.
-
----
-
-# 🚀 W2-PM1 Completed
-
-```text
-WHOIS
-  ↓
-WhatWeb
-  ↓
-nslookup
-  ↓
-curl
-  ↓
-Wafw00f
-  ↓
-DNSRecon
-  ↓
-Findings
-  ↓
-Risk Analysis
-  ↓
-Recommendations
-```
+The exercise provided practical experience with reconnaissance tools and demonstrated the importance of information gathering in penetration testing.
 
 **🔐 Learn responsibly. Test ethically. Document professionally.**
